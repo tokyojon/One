@@ -1,7 +1,4 @@
-'use client';
-
 import { useState } from 'react';
-import Link from 'next/link';
 import Auth from './Auth';
 
 export default function LandingPage() {
@@ -22,7 +19,7 @@ export default function LandingPage() {
             {/* Header */}
             <header className="sticky top-0 z-50 w-full transition-colors duration-300 bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg">
                 <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
-                    <Link className="flex items-center gap-2 font-bold text-lg" href="/">
+                    <a className="flex items-center gap-2 font-bold text-lg" href="/">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-8 h-8">
                             <defs>
                                 <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -45,7 +42,7 @@ export default function LandingPage() {
                             />
                         </svg>
                         <span>ワンネスキングダム</span>
-                    </Link>
+                    </a>
                     <nav className="flex items-center gap-4">
                         <button
                             onClick={() => handleAuthClick('login')}

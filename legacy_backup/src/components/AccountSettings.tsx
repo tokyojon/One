@@ -1,17 +1,15 @@
-'use client';
-
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { useRouter } from 'next/navigation';
+import { useNavigate } from 'react-router-dom';
 
 export default function AccountSettings() {
     const { profile, signOut } = useAuth();
-    const router = useRouter();
+    const navigate = useNavigate();
     const [activeSection, setActiveSection] = useState('profile');
 
     const handleSignOut = async () => {
         await signOut();
-        router.push('/');
+        navigate('/');
     };
 
     return (
@@ -21,7 +19,7 @@ export default function AccountSettings() {
                 <header className="sticky top-0 z-10 flex w-full items-center justify-between border-b border-white/10 px-4 sm:px-10 py-3 bg-background-dark/80 backdrop-blur-sm">
                     <div className="flex items-center gap-8">
                         <div className="flex items-center gap-4">
-                            <button onClick={() => router.push('/')} className="text-white hover:text-primary transition-colors">
+                            <button onClick={() => navigate('/')} className="text-white hover:text-primary transition-colors">
                                 <span className="material-symbols-outlined">arrow_back</span>
                             </button>
                             <h2 className="text-lg font-bold">設定</h2>

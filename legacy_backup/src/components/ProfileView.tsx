@@ -1,7 +1,5 @@
-'use client';
-
 import { useState } from 'react';
-import { useRouter, useParams } from 'next/navigation';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 type ActivityItem = {
@@ -19,7 +17,7 @@ const mockActivities: ActivityItem[] = [
 ];
 
 export default function ProfileView() {
-    const router = useRouter();
+    const navigate = useNavigate();
     const { id } = useParams();
     const { profile } = useAuth();
     const [activeTab, setActiveTab] = useState('contributions');
@@ -36,7 +34,7 @@ export default function ProfileView() {
                 {/* Header */}
                 <header className="flex h-20 items-center justify-between gap-4 px-4 sm:px-6 lg:px-8 sticky top-0 z-50 bg-background-dark/80 backdrop-blur-sm border-b border-white/10">
                     <div className="flex items-center gap-4">
-                        <button onClick={() => router.push('/')} className="flex items-center gap-2">
+                        <button onClick={() => navigate('/')} className="flex items-center gap-2">
                             <div className="flex size-8 items-center justify-center rounded-lg bg-primary text-background-dark">
                                 <span className="material-symbols-outlined text-lg">spa</span>
                             </div>
@@ -44,10 +42,10 @@ export default function ProfileView() {
                         </button>
                     </div>
                     <div className="flex items-center gap-4">
-                        <button onClick={() => router.push('/')} className="p-2 rounded-full hover:bg-white/10 transition-colors">
+                        <button onClick={() => navigate('/')} className="p-2 rounded-full hover:bg-white/10 transition-colors">
                             <span className="material-symbols-outlined">notifications</span>
                         </button>
-                        <button onClick={() => router.push('/profile')} className="p-2 rounded-full hover:bg-white/10 transition-colors">
+                        <button onClick={() => navigate('/profile')} className="p-2 rounded-full hover:bg-white/10 transition-colors">
                             <span className="material-symbols-outlined">settings</span>
                         </button>
                     </div>
@@ -57,13 +55,13 @@ export default function ProfileView() {
                     {/* Mobile Header */}
                     <header className="flex items-center justify-between gap-2 p-4 mb-6 md:hidden">
                         <div className="flex items-center gap-2">
-                            <button onClick={() => router.back()} className="p-2">
+                            <button onClick={() => navigate(-1)} className="p-2">
                                 <span className="material-symbols-outlined text-2xl">arrow_back</span>
                             </button>
                             <h1 className="text-xl font-bold">プロフィール</h1>
                         </div>
                         {isOwnProfile && (
-                            <button onClick={() => router.push('/profile')} className="p-2">
+                            <button onClick={() => navigate('/profile')} className="p-2">
                                 <span className="material-symbols-outlined text-2xl">edit</span>
                             </button>
                         )}
@@ -105,7 +103,7 @@ export default function ProfileView() {
                                         </>
                                     ) : (
                                         <button
-                                            onClick={() => router.push('/settings')}
+                                            onClick={() => navigate('/profile')}
                                             className="flex-1 px-4 py-3 bg-primary hover:bg-primary/90 text-background-dark rounded-xl font-bold transition-colors"
                                         >
                                             プロフィールを編集
@@ -131,8 +129,8 @@ export default function ProfileView() {
                                                 key={tab.id}
                                                 onClick={() => setActiveTab(tab.id)}
                                                 className={`flex flex-col items-center justify-center border-b-[3px] pb-[13px] pt-4 ${activeTab === tab.id
-                                                    ? 'border-primary text-primary'
-                                                    : 'border-transparent text-text-secondary hover:text-white'
+                                                        ? 'border-primary text-primary'
+                                                        : 'border-transparent text-text-secondary hover:text-white'
                                                     }`}
                                             >
                                                 <p className="text-sm font-bold">{tab.label}</p>

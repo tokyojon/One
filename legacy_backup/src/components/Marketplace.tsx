@@ -1,7 +1,5 @@
-'use client';
-
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useNavigate } from 'react-router-dom';
 
 const mockListings = [
     { id: 1, title: 'ガーデンデザインのヘルプが必要', user: '田中 由紀', tags: 'ガーデニング, デザイン', image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400' },
@@ -15,7 +13,7 @@ const mockListings = [
 ];
 
 export default function Marketplace() {
-    const router = useRouter();
+    const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState('find');
     const [searchQuery, setSearchQuery] = useState('');
 
@@ -29,12 +27,12 @@ export default function Marketplace() {
             <div className="min-h-screen bg-background-dark text-white pb-24">
                 {/* Header */}
                 <header className="flex h-16 w-full items-center justify-between px-4 md:px-10 border-b border-white/10 bg-background-dark/80 backdrop-blur-sm sticky top-0 z-10">
-                    <button onClick={() => router.push('/')} className="flex items-center gap-2">
+                    <button onClick={() => navigate('/')} className="flex items-center gap-2">
                         <span className="material-symbols-outlined text-3xl text-primary">local_florist</span>
                         <span className="text-xl font-bold">Kizuna</span>
                     </button>
                     <nav className="hidden md:flex items-center gap-6">
-                        <button onClick={() => router.push('/')} className="text-sm font-medium hover:text-primary transition-colors">
+                        <button onClick={() => navigate('/')} className="text-sm font-medium hover:text-primary transition-colors">
                             ホーム
                         </button>
                         <button className="text-sm font-bold text-primary">マーケットプレイス</button>
@@ -43,7 +41,7 @@ export default function Marketplace() {
                         <button className="flex items-center justify-center rounded-full h-10 w-10 bg-surface-dark">
                             <span className="material-symbols-outlined">notifications</span>
                         </button>
-                        <button onClick={() => router.push('/profile')} className="flex items-center justify-center rounded-full h-10 w-10 bg-surface-dark">
+                        <button onClick={() => navigate('/profile')} className="flex items-center justify-center rounded-full h-10 w-10 bg-surface-dark">
                             <span className="material-symbols-outlined">person</span>
                         </button>
                     </div>

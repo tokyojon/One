@@ -1,7 +1,5 @@
-'use client';
-
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useNavigate } from 'react-router-dom';
 
 const mockTransactions = [
     { id: 1, type: 'gift', title: '中村 優太さんからギフト', date: '2023年10月26日', amount: 500, positive: true },
@@ -28,7 +26,7 @@ const getIcon = (type: string) => {
 };
 
 export default function Wallet() {
-    const router = useRouter();
+    const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState('all');
 
     const totalPoints = 12405;
@@ -46,20 +44,20 @@ export default function Wallet() {
                 {/* Header */}
                 <header className="sticky top-0 z-10 flex h-20 w-full items-center justify-center border-b border-white/10 bg-background-dark/80 backdrop-blur-lg">
                     <div className="flex h-full w-full max-w-[960px] items-center justify-between px-4">
-                        <a className="text-2xl font-black" href="#" onClick={() => router.push('/')}>
+                        <a className="text-2xl font-black" href="#" onClick={() => navigate('/')}>
                             Oneness
                         </a>
                         <nav className="hidden items-center gap-6 md:flex">
-                            <button onClick={() => router.push('/')} className="text-sm font-bold text-white/60 hover:text-primary">
+                            <button onClick={() => navigate('/')} className="text-sm font-bold text-white/60 hover:text-primary">
                                 ホーム
                             </button>
-                            <button onClick={() => router.push('/explore')} className="text-sm font-bold text-white/60 hover:text-primary">
+                            <button onClick={() => navigate('/explore')} className="text-sm font-bold text-white/60 hover:text-primary">
                                 発見
                             </button>
                             <button className="text-sm font-bold text-primary">ウォレット</button>
                         </nav>
                         <div className="flex items-center gap-4">
-                            <button onClick={() => router.push('/profile')}>
+                            <button onClick={() => navigate('/profile')}>
                                 <span className="material-symbols-outlined">notifications</span>
                             </button>
                             <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary to-blue-500 flex items-center justify-center font-bold text-background-dark">
@@ -74,7 +72,7 @@ export default function Wallet() {
                         <div className="flex flex-col max-w-[960px] flex-1 px-4 md:px-0">
                             {/* Back Button */}
                             <div className="flex justify-between gap-2 px-4 py-3 items-center">
-                                <button onClick={() => router.push('/')} className="p-2">
+                                <button onClick={() => navigate('/')} className="p-2">
                                     <span className="material-symbols-outlined text-2xl">arrow_back</span>
                                 </button>
                             </div>

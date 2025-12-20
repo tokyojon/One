@@ -1,8 +1,5 @@
-'use client';
-
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import OnboardingModal from './OnboardingModal';
 
@@ -18,7 +15,7 @@ export default function Dashboard() {
   const { user, profile, signOut, refreshProfile } = useAuth();
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [showCustomization, setShowCustomization] = useState(false);
-  const pathname = usePathname();
+  const location = useLocation();
 
   // Widget management
   const [widgets, setWidgets] = useState<Widget[]>(() => {
@@ -72,7 +69,7 @@ export default function Dashboard() {
   const greeting = hours < 12 ? 'おはようございます' : hours < 18 ? 'こんにちは' : 'こんばんは';
   const dateStr = now.toLocaleDateString('ja-JP', { weekday: 'long', month: 'long', day: 'numeric' });
 
-  const isActive = (path: string) => pathname === path;
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <div className="dark">
@@ -226,19 +223,19 @@ export default function Dashboard() {
         <nav className="fixed bottom-0 w-full max-w-md z-50 bg-background-dark/80 backdrop-blur-lg border-t border-white/5 pb-6 pt-3 px-6">
           <ul className="flex justify-between items-center">
             <li>
-              <Link href="/" className={`flex flex-col items-center gap-1 ${isActive('/') ? 'text-primary' : 'text-text-secondary hover:text-white'} transition-colors`}>
+              <Link to="/" className={`flex flex-col items-center gap-1 ${isActive('/') ? 'text-primary' : 'text-text-secondary hover:text-white'} transition-colors`}>
                 <span className="material-symbols-outlined" style={{ fontVariationSettings: isActive('/') ? "'FILL' 1" : "'FILL' 0" }}>home</span>
                 <span className="text-[10px] font-medium">ホーム</span>
               </Link>
             </li>
             <li>
-              <Link href="/explore" className={`flex flex-col items-center gap-1 ${isActive('/explore') ? 'text-primary' : 'text-text-secondary hover:text-white'} transition-colors`}>
+              <Link to="/explore" className={`flex flex-col items-center gap-1 ${isActive('/explore') ? 'text-primary' : 'text-text-secondary hover:text-white'} transition-colors`}>
                 <span className="material-symbols-outlined">explore</span>
                 <span className="text-[10px] font-medium">探索</span>
               </Link>
             </li>
             <li>
-              <Link href="/wallet" className={`flex flex-col items-center gap-1 ${isActive('/wallet') ? 'text-primary' : 'text-text-secondary hover:text-white'} transition-colors relative`}>
+              <Link to="/wallet" className={`flex flex-col items-center gap-1 ${isActive('/wallet') ? 'text-primary' : 'text-text-secondary hover:text-white'} transition-colors relative`}>
                 <div className="relative">
                   <span className="material-symbols-outlined">account_balance_wallet</span>
                 </div>
@@ -246,7 +243,7 @@ export default function Dashboard() {
               </Link>
             </li>
             <li>
-              <Link href="/profile" className={`flex flex-col items-center gap-1 ${isActive('/profile') ? 'text-primary' : 'text-text-secondary hover:text-white'} transition-colors`}>
+              <Link to="/profile" className={`flex flex-col items-center gap-1 ${isActive('/profile') ? 'text-primary' : 'text-text-secondary hover:text-white'} transition-colors`}>
                 <span className="material-symbols-outlined">person</span>
                 <span className="text-[10px] font-medium">プロフィール</span>
               </Link>
@@ -282,8 +279,8 @@ export default function Dashboard() {
                       <button
                         onClick={() => toggleWidget(widget.id)}
                         className={`px-4 py-2 rounded-lg font-medium transition-colors ${widget.enabled
-                          ? 'bg-primary text-background-dark hover:bg-primary/90'
-                          : 'bg-white/10 text-white hover:bg-white/20'
+                            ? 'bg-primary text-background-dark hover:bg-primary/90'
+                            : 'bg-white/10 text-white hover:bg-white/20'
                           }`}
                       >
                         {widget.enabled ? '有効' : '無効'}

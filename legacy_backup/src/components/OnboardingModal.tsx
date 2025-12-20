@@ -1,5 +1,3 @@
-'use client';
-
 import { useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { ChevronRight, ChevronLeft, Sparkles } from 'lucide-react';
