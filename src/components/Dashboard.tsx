@@ -1,10 +1,35 @@
 import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import OnboardingModal from './OnboardingModal';
+
+type Widget = {
+  id: string;
+  name: string;
+  icon: string;
+  description: string;
+  enabled: boolean;
+};
 
 export default function Dashboard() {
   const { user, profile, signOut, refreshProfile } = useAuth();
   const [showOnboarding, setShowOnboarding] = useState(false);
+  const [showCustomization, setShowCustomization] = useState(false);
+  const location = useLocation();
+
+  // Widget management
+  const [widgets, setWidgets] = useState<Widget[]>(() => {
+    const saved = localStorage.getItem('dashboardWidgets');
+    if (saved) {
+      return JSON.parse(saved);
+    }
+    return [
+      { id: 'my-posts', name: '自分の投稿', icon: 'table', description: 'あなたの最近の投稿とエンゲージメント。', enabled: true },
+      { id: 'trending', name: 'トレンド・ハイライト', icon: 'trending_up', description: 'コミュニティで話題になっていること。', enabled: true },
+      { id: 'recommendations', name: 'おすすめ', icon: 'recommend', description: 'あなたにパーソナライズされたコンテンツ。', enabled: false },
+      { id: 'bookmarks', name: 'ブックマーク', icon: 'bookmark', description: '保存した投稿や記事へのクイックアクセス。', enabled: false },
+    ];
+  });
 
   useEffect(() => {
     if (profile && !profile.onboarding_completed) {
@@ -12,9 +37,27 @@ export default function Dashboard() {
     }
   }, [profile]);
 
+  useEffect(() => {
+    localStorage.setItem('dashboardWidgets', JSON.stringify(widgets));
+  }, [widgets]);
+
   const handleOnboardingComplete = async () => {
     setShowOnboarding(false);
     await refreshProfile();
+  };
+
+  const toggleWidget = (id: string) => {
+    setWidgets(widgets.map(w => w.id === id ? { ...w, enabled: !w.enabled } : w));
+  };
+
+  const resetWidgets = () => {
+    const defaultWidgets = [
+      { id: 'my-posts', name: '自分の投稿', icon: 'table', description: 'あなたの最近の投稿とエンゲージメント。', enabled: true },
+      { id: 'trending', name: 'トレンド・ハイライト', icon: 'trending_up', description: 'コミュニティで話題になっていること。', enabled: true },
+      { id: 'recommendations', name: 'おすすめ', icon: 'recommend', description: 'あなたにパーソナライズされたコンテンツ。', enabled: false },
+      { id: 'bookmarks', name: 'ブックマーク', icon: 'bookmark', description: '保存した投稿や記事へのクイックアクセス。', enabled: false },
+    ];
+    setWidgets(defaultWidgets);
   };
 
   // Calculate profile completion percentage
@@ -25,6 +68,8 @@ export default function Dashboard() {
   const hours = now.getHours();
   const greeting = hours < 12 ? 'おはようございます' : hours < 18 ? 'こんにちは' : 'こんばんは';
   const dateStr = now.toLocaleDateString('ja-JP', { weekday: 'long', month: 'long', day: 'numeric' });
+
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <div className="dark">
@@ -38,12 +83,20 @@ export default function Dashboard() {
                 {greeting}、{profile?.name}さん
               </h1>
             </div>
-            <button
-              onClick={signOut}
-              className="relative flex items-center justify-center w-10 h-10 rounded-full bg-surface-dark/50 hover:bg-surface-dark transition text-white"
-            >
-              <span className="material-symbols-outlined">logout</span>
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setShowCustomization(true)}
+                className="relative flex items-center justify-center w-10 h-10 rounded-full bg-surface-dark/50 hover:bg-surface-dark transition text-white"
+              >
+                <span className="material-symbols-outlined">tune</span>
+              </button>
+              <button
+                onClick={signOut}
+                className="relative flex items-center justify-center w-10 h-10 rounded-full bg-surface-dark/50 hover:bg-surface-dark transition text-white"
+              >
+                <span className="material-symbols-outlined">logout</span>
+              </button>
+            </div>
           </div>
         </header>
 
@@ -170,36 +223,90 @@ export default function Dashboard() {
         <nav className="fixed bottom-0 w-full max-w-md z-50 bg-background-dark/80 backdrop-blur-lg border-t border-white/5 pb-6 pt-3 px-6">
           <ul className="flex justify-between items-center">
             <li>
-              <a className="flex flex-col items-center gap-1 text-primary" href="#">
-                <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>home</span>
+              <Link to="/" className={`flex flex-col items-center gap-1 ${isActive('/') ? 'text-primary' : 'text-text-secondary hover:text-white'} transition-colors`}>
+                <span className="material-symbols-outlined" style={{ fontVariationSettings: isActive('/') ? "'FILL' 1" : "'FILL' 0" }}>home</span>
                 <span className="text-[10px] font-medium">ホーム</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a className="flex flex-col items-center gap-1 text-text-secondary hover:text-white transition-colors" href="#">
+              <Link to="/explore" className={`flex flex-col items-center gap-1 ${isActive('/explore') ? 'text-primary' : 'text-text-secondary hover:text-white'} transition-colors`}>
                 <span className="material-symbols-outlined">explore</span>
                 <span className="text-[10px] font-medium">探索</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a className="flex flex-col items-center gap-1 text-text-secondary hover:text-white transition-colors relative" href="#">
+              <Link to="/wallet" className={`flex flex-col items-center gap-1 ${isActive('/wallet') ? 'text-primary' : 'text-text-secondary hover:text-white'} transition-colors relative`}>
                 <div className="relative">
-                  <span className="material-symbols-outlined">chat_bubble</span>
-                  <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-primary rounded-full border-2 border-background-dark"></span>
+                  <span className="material-symbols-outlined">account_balance_wallet</span>
                 </div>
-                <span className="text-[10px] font-medium">チャット</span>
-              </a>
+                <span className="text-[10px] font-medium">ウォレット</span>
+              </Link>
             </li>
             <li>
-              <a className="flex flex-col items-center gap-1 text-text-secondary hover:text-white transition-colors" href="#">
+              <Link to="/profile" className={`flex flex-col items-center gap-1 ${isActive('/profile') ? 'text-primary' : 'text-text-secondary hover:text-white'} transition-colors`}>
                 <span className="material-symbols-outlined">person</span>
                 <span className="text-[10px] font-medium">プロフィール</span>
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>
 
         {/* Onboarding Modal */}
+        {/* Customization Modal */}
+        {showCustomization && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+            <div className="bg-surface-dark rounded-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+              <div className="sticky top-0 bg-surface-dark border-b border-white/10 p-6 flex items-center justify-between">
+                <div>
+                  <h2 className="text-2xl font-bold text-white">ダッシュボードのカスタマイズ</h2>
+                  <p className="text-text-secondary text-sm mt-1">ウィジェットを追加または削除して、ダッシュボードを整理します。</p>
+                </div>
+                <button onClick={() => setShowCustomization(false)} className="p-2 hover:bg-white/10 rounded-lg transition-colors">
+                  <span className="material-symbols-outlined text-white">close</span>
+                </button>
+              </div>
+              <div className="p-6">
+                <div className="flex flex-col gap-4">
+                  {widgets.map((widget) => (
+                    <div key={widget.id} className="flex items-center gap-4 p-4 rounded-lg border border-white/10 bg-background-dark">
+                      <div className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-white/10 text-white">
+                        <span className="material-symbols-outlined text-2xl">{widget.icon}</span>
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-base font-medium text-white">{widget.name}</p>
+                        <p className="text-sm text-text-secondary">{widget.description}</p>
+                      </div>
+                      <button
+                        onClick={() => toggleWidget(widget.id)}
+                        className={`px-4 py-2 rounded-lg font-medium transition-colors ${widget.enabled
+                            ? 'bg-primary text-background-dark hover:bg-primary/90'
+                            : 'bg-white/10 text-white hover:bg-white/20'
+                          }`}
+                      >
+                        {widget.enabled ? '有効' : '無効'}
+                      </button>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex gap-4 mt-6 pt-6 border-t border-white/10">
+                  <button
+                    onClick={resetWidgets}
+                    className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg font-medium transition-colors"
+                  >
+                    デフォルトに戻す
+                  </button>
+                  <button
+                    onClick={() => setShowCustomization(false)}
+                    className="px-4 py-2 bg-primary hover:bg-primary/90 text-background-dark rounded-lg font-medium transition-colors"
+                  >
+                    変更を保存
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {showOnboarding && (
           <OnboardingModal
             userId={user?.id || ''}

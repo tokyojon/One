@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html class="light" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Matching (Marketplace) Page</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#f05f42",
+              "background-light": "#f8f6f6",
+              "background-dark": "#221310",
+              "text-light": "#181211",
+              "text-dark": "#f8f6f6",
+              "subtle-light": "#896861",
+              "subtle-dark": "#a1908d",
+              "surface-light": "#f4f1f0",
+              "surface-dark": "#3a2a26",
+            },
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+      }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex h-16 w-full items-center justify-between px-4 md:px-10 border-b border-surface-light dark:border-surface-dark">
+<a class="flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-3xl text-primary">local_florist</span>
+<span class="text-xl font-bold text-text-light dark:text-text-dark">Kizuna</span>
+</a>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">ホーム</a>
+<a class="text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">グループ</a>
+<a class="text-sm font-bold text-primary dark:text-primary" href="#">マーケットプレイス</a>
+<a class="text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">イベント</a>
+</nav>
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center rounded-full h-10 w-10 bg-surface-light dark:bg-surface-dark text-text-light dark:text-text-dark">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-full h-10 w-10 bg-surface-light dark:bg-surface-dark text-text-light dark:text-text-dark">
+<span class="material-symbols-outlined">chat</span>
+</button>
+<button class="flex items-center justify-center rounded-full h-10 w-10 bg-surface-light dark:bg-surface-dark text-text-light dark:text-text-dark">
+<img alt="User avatar" class="h-10 w-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALytACEmqaaDhzMWqZINwynSmJmkM-mInIyLy55vzZ6T__7R1U65QbX_7FUtkFtu8MYJR_yAuaYSzNCnOH6ZfBX1IrhEkAENh6MLg_aC_-p_jRLb21iFClF55eU0gqaugrZzPIKCv8nEoX8CITLm43zOVNx38U5MZ9RCT-0FH-Z_7cjSUzbhfCd_LelJUbTcu602nPh3AxBIPr9k640-l8qsbOj6gbp6O_6FxBjM48FtpY6iSO4eA2llv7vgDM_jVBEC1qzTeEPAQ"/>
+</button>
+<button class="md:hidden flex items-center justify-center rounded-full h-10 w-10 bg-surface-light dark:bg-surface-dark text-text-light dark:text-text-dark">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<main class="flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col w-full max-w-5xl px-4 md:px-10 flex-1">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-surface-light dark:border-surface-dark px-0 md:px-10 py-3 mb-4">
+<div class="flex items-center gap-4">
+<div class="size-6 text-text-light dark:text-text-dark">
+<span class="material-symbols-outlined">
+                                local_florist
+                            </span>
+</div>
+<h1 class="text-xl font-bold leading-tight tracking-[-0.015em]">マーケットプレイス</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-full h-12 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-shadow">
+<span class="material-symbols-outlined text-2xl">add_circle</span>
+<span class="truncate">出品する</span>
+</button>
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 bg-surface-light dark:bg-surface-dark text-text-light dark:text-text-dark gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
+<span class="material-symbols-outlined text-xl">
+                                more_vert
+                            </span>
+</button>
+</div>
+</header>
+<div class="flex px-0 md:px-4 py-3">
+<div class="flex h-10 flex-1 items-center justify-center rounded-xl bg-surface-light dark:bg-surface-dark p-1">
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 has-[:checked]:bg-white has-[:checked]:dark:bg-background-dark has-[:checked]:shadow-[0_1px_3px_rgba(0,0,0,0.1)] has-[:checked]:text-text-light has-[:checked]:dark:text-text-dark text-subtle-light dark:text-subtle-dark text-sm font-medium leading-normal">
+<span class="truncate">探す</span>
+<input checked="" class="invisible w-0" name="view-toggle" type="radio" value="探す"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 has-[:checked]:bg-white has-[:checked]:dark:bg-background-dark has-[:checked]:shadow-[0_1px_3px_rgba(0,0,0,0.1)] has-[:checked]:text-text-light has-[:checked]:dark:text-text-dark text-subtle-light dark:text-subtle-dark text-sm font-medium leading-normal">
+<span class="truncate">提供する</span>
+<input class="invisible w-0" name="view-toggle" type="radio" value="提供する"/>
+</label>
+</div>
+</div>
+<div class="px-0 md:px-4 py-3">
+<label class="flex flex-col min-w-40 h-12 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-xl h-full">
+<div class="text-subtle-light dark:text-subtle-dark flex border-none bg-surface-light dark:bg-surface-dark items-center justify-center pl-4 rounded-l-xl border-r-0">
+<span class="material-symbols-outlined">
+                                    search
+                                </span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-xl text-text-light dark:text-text-dark focus:outline-0 focus:ring-0 border-none bg-surface-light dark:bg-surface-dark h-full placeholder:text-subtle-light placeholder:dark:text-subtle-dark pl-2 text-base font-normal leading-normal" placeholder="スキル、キーワードで検索" value=""/>
+</div>
+</label>
+</div>
+<div class="flex gap-3 px-0 md:px-4 py-3 overflow-x-auto">
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-surface-light dark:bg-surface-dark pl-4 pr-2">
+<p class="text-text-light dark:text-text-dark text-sm font-medium leading-normal">カテゴリー</p>
+<span class="material-symbols-outlined text-lg text-subtle-light dark:text-subtle-dark">
+                            arrow_drop_down
+                        </span>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-surface-light dark:bg-surface-dark pl-4 pr-2">
+<p class="text-text-light dark:text-text-dark text-sm font-medium leading-normal">距離</p>
+<span class="material-symbols-outlined text-lg text-subtle-light dark:text-subtle-dark">
+                            arrow_drop_down
+                        </span>
+</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-0 md:p-4">
+<div class="flex flex-col gap-3 pb-3">
+<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-xl" data-alt="Abstract image of a well-tended garden with sunlight filtering through leaves." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD6lQo3NJB3ScT8_K4juoCSkUtfZhhmzbJR9kEhR3Z-CtEDFIHeheDOEDd4h24LDaHh3zN6VxfuUCu9kIpGq3eObVhqgJu85cDZgK8qgEQR3y12drzc1ERjU4OswQKbjsSz9qqPJwrvo3N_pVLTlwMircJai_JXvHxyxuWv4Qgk0Mw1qBHRtM01XdApGxi4ynEI9v6hoVP2HyVD31l3XsJpNo9YQXLduwNKrYuObVTg1-dXAcYGhdkS5jFa1PqIlOkyajbwF5APOLI");'></div>
+<div>
+<p class="text-base font-medium leading-normal">Need help with garden design</p>
+<p class="text-sm font-normal leading-normal text-subtle-light dark:text-subtle-dark">Yuki Tanaka</p>
+<p class="text-sm font-normal leading-normal text-subtle-light dark:text-subtle-dark">Gardening, Design, Outdoors</p>
+</div>
+</div>
+<div class="flex flex-col gap-3 pb-3">
+<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-xl" data-alt="A person studying Japanese characters written on a whiteboard." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDfP77EmVfR98h_kMpHKjLHpPKklteFCQgMQv7L44Rj6E9Q2OVrm-zCmH9vdLkawC4d-36uuJAHeyCMgfMoPk-KcZCf15OnH4pkAAhp-yy_Zt6e62JEzXnrvHzCYTk-CaoSl1eiEXHs-WiR-CQ_kvFlgZ-GADcH-5XnTg2oJK6EilRmf3Q-lQSp1nYO-zL-Pdes8Fka3WJxw0eSfPPNMQrCUWtv1XcHdtbSOQE7BucFdkocbn7Wr0bg6F_S8HNtvuwSwrc856o5a0A");'></div>
+<div>
+<p class="text-base font-medium leading-normal">Looking for a Japanese tutor</p>
+<p class="text-sm font-normal leading-normal text-subtle-light dark:text-subtle-dark">Haru Ito</p>
+<p class="text-sm font-normal leading-normal text-subtle-light dark:text-subtle-dark">Language, Tutoring, Japanese</p>
+</div>
+</div>
+<div class="flex flex-col gap-3 pb-3">
+<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-xl" data-alt="A happy golden retriever with a leash in its mouth, ready for a walk." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCYXQU1hAF_OAKLanyyhSh1kymeQhNHxq6uGnalSIssRSA4ZK-RDEmYqN4B2HqGmDtGZsISu6k9SezdPo2x0aCs_M3o6_TaJzeV48zucjpWcQm_PuODojUoQvtzoYpIyjRPSGCq9Bjz09OlhXl2JFbr89rnilHWh00APVtMBa1qINEg5vCR3YW57s2o2GKr-s45Kzd3z2AANt-vsxr-1ZHRvhYrPcv2D9cjrXlO3hYF7w7Mc-LLouxWCCRkZDEAIpd-W6jR37z4PLA");'></div>
+<div>
+<p class="text-base font-medium leading-normal">Dog walker needed for weekday afternoons</p>
+<p class="text-sm font-normal leading-normal text-subtle-light dark:text-subtle-dark">Airi Sato</p>
+<p class="text-sm font-normal leading-normal text-subtle-light dark:text-subtle-dark">Pets, Dog Walking</p>
+</div>
+</div>
+<div class="flex flex-col gap-3 pb-3">
+<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-xl" data-alt="A minimalist living room with a single brown leather sofa." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAoGS_iDQO_8bAuJLS-ocA3Slbz8Snh47gUIaJhmSGhNlJxxfeo1YTgWo2Y236SB7mvzPFejirMvrQSNjWyfT1QPHqnLX5lGd5vIHx-zgJJvBk87oD6XltJDELUerPhqxnsfr_GK-Klpzl4u2T4Wdroi9OgbhDH8fBmba5wp0b-WfMGFCfP98xOLeNXsmT5HVWjL9nlQ53XdWoVPpfGLM1TIm1lNMjiQ_S2RV_slQ6K-95GkvGdhTaKrJIloobXfb0mu7NyPqA0jIc");'></div>
+<div>
+<p class="text-base font-medium leading-normal">Help moving a sofa</p>
+<p class="text-sm font-normal leading-normal text-subtle-light dark:text-subtle-dark">Kaito Suzuki</p>
+<p class="text-sm font-normal leading-normal text-subtle-light dark:text-subtle-dark">Manual Labor, Moving</p>
+</div>
+</div>
+<div class="flex flex-col gap-3 pb-3">
+<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-xl" data-alt="A photographer holding a camera during an outdoor event at golden hour." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBM0lP3zDyGRetZk7ilNqzV2xsVfZ_Sd6MBxJLhko2S8ov-JBKaYf464zp91r9qoi6VMPWyOxHM924fWl1F-59XOhdxmF9BDrejy53Lgafo4z84QdOGMw51kEDunwyzbnNR5rSygxdmenGV1eKgrN5T51XD6VSzapFhvX0q64SZU4u6wza_otZ6SxLzd4J39N4f4W21pby76uOdeMiDag-PcgW2cxM8f-yT0K5lsLp8Oq1jGkICyl_vFVGJqm_GcpS9Hqo3aIxJLOs");'></div>
+<div>
+<p class="text-base font-medium leading-normal">Seeking a photographer for a small event</p>
+<p class="text-sm font-normal leading-normal text-subtle-light dark:text-subtle-dark">Rin Takahashi</p>
+<p class="text-sm font-normal leading-normal text-subtle-light dark:text-subtle-dark">Photography, Events</p>
+</div>
+</div>
+<div class="flex flex-col gap-3 pb-3">
+<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-xl" data-alt="A clean desk setup with a laptop showing website design wireframes." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBqFeVkgk80h0BMEe12Zf2orzBj4bwdt45WsNkdJiOdw79nOi_QKyjRPW6YPoZFivMQANWnGi-Vd5DFYL-2G6f-ESezsVRyMgTRl6JGmYJqkOysPH8FKfj0L_hr8WKCGd6wg96XRalmUOyrgUsH8yJ5TRz4ryu1rbeSBmxquyAdPchPJYHy8G_Nkac5s4H4A4DSP3cwEtOIFlG6AlfqjufoHqPmfyhcRUUhj_AVyZrgfPqRonWWtgJecxC8Tmn2Se3p_xL7cgNiTyI");'></div>
+<div>
+<p class="text-base font-medium leading-normal">Website design consultation</p>
+<p class="text-sm font-normal leading-normal text-subtle-light dark:text-subtle-dark">Sota Watanabe</p>
+<p class="text-sm font-normal leading-normal text-subtle-light dark:text-subtle-dark">Web Design, UX, UI</p>
+</div>
+</div>
+<div class="flex flex-col gap-3 pb-3">
+<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-xl" data-alt="A person assembling flat-pack furniture with an Allen key." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBwo-mspHjv_Vx4NB8eEb_IrUY0t413PxGQJF1NnNlFt7XPOVedCvQ5hP-ZzdivEbedwLn5jCLyuPbvW_jBxIKArnSzgvAcULaIl55nXmvkbLzNGwmyH3u-77peIGsgU-XumF-zoQjeoCMb8d0vxVYTQrOa_CbrfjCu8MOYdEIHO7J1QWMWHFDuLLz_Sa5oCbkFpRVGVUC_H6Sv-AdIxJehkShwZ1vPMBU7RAQFuRhtX5qi4hSl2OYwTqW4xXlUVNOHS6_tM7QsC0M");'></div>
+<div>
+<p class="text-base font-medium leading-normal">Need someone to assemble IKEA furniture</p>
+<p class="text-sm font-normal leading-normal text-subtle-light dark:text-subtle-dark">Mei Nakamura</p>
+<p class="text-sm font-normal leading-normal text-subtle-light dark:text-subtle-dark">Furniture, Assembly</p>
+</div>
+</div>
+<div class="flex flex-col gap-3 pb-3">
+<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-xl" data-alt="A beautifully decorated birthday cake with lit candles on a wooden table." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD2VhTayg9BZXGC9Drt5ZiQd0jraOBt2l1IHC8KmlJitUKGJzbl2uwCR2zNrdwsmjn19IppPBOGmw5qEX2UGTLB7OcKffbHRjk2P_07Nb0GN3wv6JXmoG9IYcA6I3o5E9i11OawyiHC2abFToxZhe4a3dH7q0cpArIzgAM2d99lwjICIPSLokz59p0sJcoJxmDLdk-F9sPKKMz7E_Axnhte6OrbRN9YBm6B-pnQufsP4jOQRrCT7CWygthn4lTcybCWa2qtS2M3tL8");'></div>
+<div>
+<p class="text-base font-medium leading-normal">Requesting a hand-made birthday cake</p>
+<p class="text-sm font-normal leading-normal text-subtle-light dark:text-subtle-dark">Ren Yamamoto</p>
+<p class="text-sm font-normal leading-normal text-subtle-light dark:text-subtle-dark">Baking, Cooking, Desserts</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="w-full border-t border-surface-light dark:border-surface-dark mt-10">
+<div class="container mx-auto flex flex-col items-center justify-between gap-4 px-4 py-8 md:flex-row md:px-10">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-2xl text-primary">local_florist</span>
+<span class="text-lg font-bold text-text-light dark:text-text-dark">Kizuna</span>
+</div>
+<p class="text-sm text-subtle-light dark:text-subtle-dark">© 2024 Kizuna. All rights reserved.</p>
+<div class="flex items-center gap-4 text-sm font-medium">
+<a class="text-subtle-light dark:text-subtle-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">プライバシーポリシー</a>
+<a class="text-subtle-light dark:text-subtle-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">利用規約</a>
+</div>
+</div>
+</footer>
+</div>
+</div>
+</body></html>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { ChevronRight, ChevronLeft, Sparkles } from 'lucide-react';
+import KawaiiGenerator, { GeneratedAvatarPayload } from './KawaiiGenerator';
 
 interface OnboardingModalProps {
   userId: string;
@@ -39,6 +40,8 @@ const BAD_TRAITS = ['頑固', '短気', '片付けが苦手', '人見知り'];
 export default function OnboardingModal({ userId, onComplete, onClose }: OnboardingModalProps) {
   const [currentCard, setCurrentCard] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [avatarSaving, setAvatarSaving] = useState(false);
+  const [generatedAvatar, setGeneratedAvatar] = useState<GeneratedAvatarPayload | null>(null);
 
   const [formData, setFormData] = useState({
     relationship_status: '',
@@ -54,6 +57,7 @@ export default function OnboardingModal({ userId, onComplete, onClose }: Onboard
     hobby_interest: '',
     hobby_activity: '',
     outlook: '',
+    avatar_url: '',
   });
 
   const toggleTrait = (trait: string, isGood: boolean) => {
@@ -86,6 +90,41 @@ export default function OnboardingModal({ userId, onComplete, onClose }: Onboard
     }
   };
 
+  const handleAvatarSave = async (data: { avatar: GeneratedAvatarPayload['avatarConfig']; imageUrl: string }) => {
+    setAvatarSaving(true);
+    try {
+      // Convert data URL to blob
+      const response = await fetch(data.imageUrl);
+      const blob = await response.blob();
+
+      // Upload to Supabase storage
+      const fileName = `${userId}-${Date.now()}.png`;
+      const { data: uploadData, error: uploadError } = await supabase.storage
+        .from('avatars')
+        .upload(fileName, blob, {
+          contentType: 'image/png',
+          upsert: true,
+        });
+
+      if (uploadError) {
+        console.error('Error uploading avatar:', uploadError);
+        setAvatarSaving(false);
+        return;
+      }
+
+      // Get public URL
+      const { data: { publicUrl } } = supabase.storage
+        .from('avatars')
+        .getPublicUrl(fileName);
+
+      setFormData({ ...formData, avatar_url: publicUrl });
+      setAvatarSaving(false);
+    } catch (error) {
+      console.error('Error saving avatar:', error);
+      setAvatarSaving(false);
+    }
+  };
+
   const handleSubmit = async () => {
     setLoading(true);
 
@@ -94,7 +133,7 @@ export default function OnboardingModal({ userId, onComplete, onClose }: Onboard
       .insert({
         user_id: userId,
         ...formData,
-        avatar_placeholder: 'kawaii-character',
+        avatar_config: generatedAvatar?.avatarConfig,
       });
 
     if (onboardingError) {
@@ -105,7 +144,10 @@ export default function OnboardingModal({ userId, onComplete, onClose }: Onboard
 
     const { error: profileError } = await supabase
       .from('profiles')
-      .update({ onboarding_completed: true })
+      .update({
+        onboarding_completed: true,
+        avatar_url: formData.avatar_url || null,
+      })
       .eq('id', userId);
 
     if (profileError) {
@@ -445,16 +487,12 @@ export default function OnboardingModal({ userId, onComplete, onClose }: Onboard
                 </div>
               </div>
 
-              <div className="mt-8 p-6 bg-gradient-to-br from-pink-50 to-blue-50 rounded-xl border-2 border-dashed border-pink-300">
-                <div className="text-center">
-                  <Sparkles className="w-12 h-12 mx-auto mb-3 text-pink-500" />
-                  <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                    あなたのカワイイキャラクター
-                  </h3>
-                  <p className="text-gray-600 text-sm">
-                    ここにキャラクタージェネレーターが表示されます
-                  </p>
-                </div>
+              <div className="mt-8">
+                <KawaiiGenerator
+                  onAvatarGenerated={(payload) => setGeneratedAvatar(payload)}
+                  onSave={handleAvatarSave}
+                  isSaving={avatarSaving}
+                />
               </div>
             </div>
           )}
