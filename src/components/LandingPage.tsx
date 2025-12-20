@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Auth from './Auth';
 
 export default function LandingPage() {
@@ -66,10 +67,15 @@ export default function LandingPage() {
             <main className="flex-grow">
                 {/* Hero Section */}
                 <section className="relative w-full h-[60vh] md:h-[80vh] flex items-center justify-center text-center text-white overflow-hidden">
-                    <div
-                        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                        style={{ backgroundImage: 'url(/hero-image.png)' }}
-                    ></div>
+                    <div className="absolute inset-0">
+                        <Image
+                            src="/hero-image.png"
+                            alt="Hero Background"
+                            fill
+                            className="object-cover object-center"
+                            priority
+                        />
+                    </div>
                     <div className="absolute inset-0 bg-gradient-to-br from-purple-900/60 via-blue-900/50 to-indigo-900/60"></div>
                     <div className="relative z-10 p-4 max-w-4xl mx-auto animate-fade-in">
                         <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4 drop-shadow-lg">ワンネスキングダムへようこそ</h1>
