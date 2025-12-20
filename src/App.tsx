@@ -1,5 +1,5 @@
 import { useAuth } from './context/AuthContext';
-import Auth from './components/Auth';
+import LandingPage from './components/LandingPage';
 import Dashboard from './components/Dashboard';
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
     );
   }
 
-  return user ? <Dashboard /> : <Auth />;
+  return user ? <Dashboard /> : <LandingPage />;
 }
 
 export default App;

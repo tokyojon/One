@@ -2,8 +2,12 @@ import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { LogIn, UserPlus } from 'lucide-react';
 
-export default function Auth() {
-  const [isLogin, setIsLogin] = useState(true);
+interface AuthProps {
+  initialMode?: 'login' | 'register';
+}
+
+export default function Auth({ initialMode = 'login' }: AuthProps) {
+  const [isLogin, setIsLogin] = useState(initialMode === 'login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');

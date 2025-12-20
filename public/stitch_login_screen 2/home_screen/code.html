@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Home Screen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee79",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#102217",
+                        "surface-dark": "#1c2720",
+                        "text-secondary": "#9db9a8",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen font-display text-gray-900 dark:text-white antialiased selection:bg-primary selection:text-background-dark">
+<div class="relative flex flex-col w-full max-w-md mx-auto min-h-screen overflow-x-hidden bg-background-light dark:bg-background-dark pb-24">
+<!-- Header -->
+<header class="sticky top-0 z-30 flex flex-col gap-2 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md px-5 pt-12 pb-2 transition-colors">
+<div class="flex items-center justify-between">
+<div>
+<p class="text-text-secondary text-sm font-medium tracking-wide uppercase">Tuesday, 14 Oct</p>
+<h1 class="text-2xl font-bold leading-tight tracking-tight">Good Evening, Alex</h1>
+</div>
+<button class="relative flex items-center justify-center w-10 h-10 rounded-full bg-surface-dark/50 hover:bg-surface-dark transition text-white">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2.5 w-2 h-2 bg-primary rounded-full border border-background-dark"></span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex flex-col gap-6 px-4 pt-4">
+<!-- Profile Snippet Card -->
+<div class="bg-white dark:bg-surface-dark p-4 rounded-xl shadow-sm flex items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="bg-center bg-no-repeat bg-cover rounded-full h-14 w-14" data-alt="Portrait of Alex smiling in a casual setting" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAYt5yGPo7dF6U_ngy2q4w8SIDaVQtzwvAwOjFQdhgvU1-13WJIAY4ZcxrKT_XV1fmF8i-GSMjngsDJAxdez56J9TaZXSxfJQNzK9uf41mh9OQzhMF3X1q39HpvQFqiA7ylRUOsRi7JqU8oJz_wp7cviS6zrYXsWD1O6-9r_i05H8jlSln3BdyO86rkmHgVgBVSOoPQ23F8ujKr0konLMrD0o0aU5-2GAyU-Jk5UXPw0iJB_6_WKio54RoiVMDctfn9c7rk7MNdrUAW");'></div>
+<div class="absolute -bottom-1 -right-1 bg-background-dark rounded-full p-0.5">
+<div class="w-4 h-4 bg-primary rounded-full border-2 border-background-dark"></div>
+</div>
+</div>
+<div class="flex flex-col">
+<p class="text-base font-bold leading-tight">Alex Doe</p>
+<p class="text-text-secondary text-xs font-normal">Digital Nomad • 42 Connections</p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1">
+<div class="flex items-center gap-1 text-xs text-primary font-bold">
+<span>75%</span>
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+</div>
+<div class="w-16 h-1.5 bg-gray-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-3/4 rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Story Carousel -->
+<div class="flex flex-col gap-2">
+<h2 class="text-lg font-bold px-1">Recent Updates</h2>
+<div class="flex w-full overflow-x-auto scrollbar-hide pb-2 -mx-4 px-4 gap-4 snap-x">
+<!-- My Story -->
+<div class="flex flex-col items-center gap-2 snap-start">
+<div class="relative w-16 h-16 rounded-full p-[2px] border-2 border-dashed border-gray-600 flex items-center justify-center cursor-pointer">
+<div class="w-full h-full bg-center bg-no-repeat bg-cover rounded-full opacity-60" data-alt="Alex's profile picture for adding a story" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA0Ypg6RiDHRhdW3egTiOBiBP2Pg9D1FYx-PCTTl12fgWKnWBtcwEE2H5hijodZ90ezD-wYKBjolfvskwaFwCvzlGQs3RWJ3CYslxwoIlS2vp5mKYoTjI777P_7x8DWw8aLDWFxrpoSSeFq2T6UCjaryqVflY5dQcpEk0i0egP7wk96KCZFn78tWWIr-u4b5dJ8h9J0O8MzyxHyilLuAj8qrsLiqnwmqhdyotahFFKDRpXhPv1zQFUN16P8MUos6rpvETcN8YCIVCO-");'></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-white drop-shadow-md">add</span>
+</div>
+</div>
+<p class="text-xs font-medium text-center">Add</p>
+</div>
+<!-- Friend 1 -->
+<div class="flex flex-col items-center gap-2 snap-start">
+<div class="w-16 h-16 rounded-full p-[2px] bg-gradient-to-tr from-primary to-blue-500">
+<div class="w-full h-full bg-background-dark rounded-full p-[2px]">
+<div class="w-full h-full bg-center bg-no-repeat bg-cover rounded-full" data-alt="Sarah's profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAkSgr67wRQs7Ipnt3c80obZiLUGgtPaUyxNmVCYfRmAu8VFyeXbw8GhZFCc07ZkYmhnPldEaGQyOY6d3m79Wo7ZcwvEMO2sGTT6Pq3awqLiy5ORtcf8IV1DLisZ6JIy3qD4C5Hx_w03sj1NTaRjIqo4VPiQR_veUMicHRw1ByhEAf1PJ_iqWMwwFihh1Cc6e31NCB-n--winOHho8PJWhcnJqiw8x_0LJJgobwwVwvaEKrvOoXigRnoMto9PHfuyfilVKaTsrPP-E1");'></div>
+</div>
+</div>
+<p class="text-xs font-medium text-center">Sarah</p>
+</div>
+<!-- Friend 2 -->
+<div class="flex flex-col items-center gap-2 snap-start">
+<div class="w-16 h-16 rounded-full p-[2px] bg-gradient-to-tr from-primary to-blue-500">
+<div class="w-full h-full bg-background-dark rounded-full p-[2px]">
+<div class="w-full h-full bg-center bg-no-repeat bg-cover rounded-full" data-alt="Mike's profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDUkiHqGHY0sR4zztUSdidl6ann-QUPuI8CBHX0Eh_iTREmXLT89BzexfjOZJuTjlzK_0YyV5svSuGOc1Z2TC49QAH85n0uX6mVQdkUhkWjljD1Iq8BvqRhhPjxSwFuOuIn6Us5fxhRQLLHb0yiXMEXMONdvZOuANLHzelglkwsoJuedAtIupCBISnMAsaUdfQbC7iqAMImteER3TUu7XmG8iXUHRFGcYd2-ZkMCxg-YwEZy2uMvHG7DEtk3gdKsh9N5Xtteg3mHMyw");'></div>
+</div>
+</div>
+<p class="text-xs font-medium text-center">Mike</p>
+</div>
+<!-- Friend 3 -->
+<div class="flex flex-col items-center gap-2 snap-start">
+<div class="w-16 h-16 rounded-full p-[2px] border-2 border-gray-700">
+<div class="w-full h-full bg-center bg-no-repeat bg-cover rounded-full" data-alt="Jen's profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAx-zpLOuOm7knvYDCki6jUoUoYrYfDSem3QsZVX5ezgBxfautpe5OaxfMXrm9LXQAQi44gMp6sj3KMExCjK7wiR1zJZ9X3gt8Gf_AyYEBNVxRgp50gZYF-fVtw6EjKQhm5De_wLxQ-6gknNd543lq2Jb8J52yy_1kB7wiHj04I4WuLgaGFjwdCA5v_QCdgX2AFurPb-nKdttXS2fiGp5B4-UPiP76MIIkvUeFzXPpiqAKUzIRTiQRr7JWb4bnm4rSlsMxgmfFEs6zU");'></div>
+</div>
+<p class="text-xs font-medium text-center text-text-secondary">Jen</p>
+</div>
+<!-- Friend 4 -->
+<div class="flex flex-col items-center gap-2 snap-start">
+<div class="w-16 h-16 rounded-full p-[2px] border-2 border-gray-700">
+<div class="w-full h-full bg-center bg-no-repeat bg-cover rounded-full" data-alt="Chris's profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA2ZYSUYpJoTx3WOLJLHc3-1m3F-3PiBuMN6RQ9CfrCYiZ2dfposo9cxR0RjuiiWF-BnmM9WX8AEmSZ6MiITuVhp3LVSfctUiop3L5DqMGbOrzHvg346_-Z--jKwdUnGEeu-87Kmu_DcM-duH2cMfuKA4mDC0o5oPTi0b2RO0mbhBnvEUSKrvGh-EAscW7rBtJiGAk21ZQMnCC1oQT5TlzLWhr3VH6ZcaS4nyhq03GKLGewGn672qEBxIFsaZnMRndAV0D4TiEolII_");'></div>
+</div>
+<p class="text-xs font-medium text-center text-text-secondary">Chris</p>
+</div>
+</div>
+</div>
+<!-- Feed Section -->
+<div class="flex flex-col gap-6">
+<h2 class="text-lg font-bold px-1">Discover</h2>
+<!-- Card 1 -->
+<div class="flex flex-col rounded-2xl bg-white dark:bg-surface-dark overflow-hidden shadow-sm">
+<div class="relative w-full aspect-video bg-gray-800">
+<div class="absolute inset-0 bg-center bg-no-repeat bg-cover" data-alt="Scenic view of a mountain hiking trail with pine trees" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDTnZNCcl7sgma4p1CAwNSDNn80VexyC4qxFb1Du8V3PFppuku6r1wDfIg4z9QsFDdsqcPSuc3W85vPpzJjvO7pswM_brmOhGNaJvxRqq5XG6q2OEuami7AY640G_q7NtIu7GkExg0fx6uZfauh6nolgGv8KO59BXDREi1tbOugZCOuAgxHl-bC4GbTg4pyNm00OYMCpynLUcdAwKGIUAZqRaltyTAI72MWt1AO9MFqdiBMhDGxC2cOXHRHkAfObebcCT88zL9NpaW-");'></div>
+<div class="absolute top-3 right-3 bg-black/40 backdrop-blur-md px-2 py-1 rounded-full text-xs text-white font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+                             Yosemite, CA
+                         </div>
+</div>
+<div class="p-4 flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-center bg-no-repeat bg-cover rounded-full" data-alt="Sarah Jenkins profile" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAohiWejL-5VeRLNRdOKQfxDdlenKpp_h35WSwUrhxHaSA-hUC9umwhMxQBDKOprZQ0mjUUXQvWiXILqA0Ttsv8Q8Szl2fLef-hBRALww31iGgw2h8K7givKJzpMtIX7UR3urTEMvNwng0NfNtLpglqhRohRX6K7N3w13APxtDGjXcdmLvNx5sfYzCVHUIysYjexSpDyD_0Ae-1OqUyMTFuvfvh_srVQf_n7zFVzszSGhniO5PzDl_AyAtUUICmz_D2ixt74q4woYdg");'></div>
+<div>
+<p class="text-base font-bold leading-tight">Sarah Jenkins</p>
+<p class="text-text-secondary text-xs">2m ago</p>
+</div>
+</div>
+<button class="flex items-center justify-center h-8 px-4 bg-primary/10 hover:bg-primary/20 text-primary rounded-full text-xs font-bold transition-colors">
+                                Connect
+                            </button>
+</div>
+<p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                            Exploring the new hiking trails this weekend! The view was absolutely breathtaking. Can't wait to go back. 🌲🏔️
+                        </p>
+<!-- Reaction Bar -->
+<div class="flex items-center gap-6 pt-2 border-t border-gray-100 dark:border-gray-800/50 mt-1">
+<button class="flex items-center gap-1.5 text-text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+<span class="text-xs font-semibold">24</span>
+</button>
+<button class="flex items-center gap-1.5 text-text-secondary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">chat_bubble</span>
+<span class="text-xs font-semibold">5</span>
+</button>
+<button class="flex items-center gap-1.5 text-text-secondary hover:text-white transition-colors ml-auto">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="flex flex-col rounded-2xl bg-white dark:bg-surface-dark overflow-hidden shadow-sm">
+<div class="p-4 pb-2 flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-center bg-no-repeat bg-cover rounded-full" data-alt="David Chen profile" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDXCM72oSkFa53xw5bYd2cMBWMoFjr02VygEeLSQfn4EKz524zrLPgg1ZVypYMLOJoCQ5Kbb4Wp2Ynx7ERi489LnJ9dKPA_DuCiSmy-vuGbLEPVZ8LvWPXb4h1NpKgfy3iYIirzMIf1vGHA25dGl6rldfYlPOZwBhGWWoJ0j4Ba9KeHgqHJtAF4SMU9Goc0M-s1Xr8rFryEoX0noHkqLCcUTw7U-lBQ0qLzixh3YXXGh5rIhy4o6E_YKbrgzWeba37GfiMTsSvuXbLw");'></div>
+<div>
+<p class="text-base font-bold leading-tight">David Chen</p>
+<p class="text-text-secondary text-xs">Product Designer • 1h ago</p>
+</div>
+</div>
+<button class="flex items-center justify-center h-8 px-4 bg-primary text-background-dark rounded-full text-xs font-bold transition-transform active:scale-95">
+                                Follow
+                            </button>
+</div>
+<p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                            Just finished a workshop on sustainable design systems. The future of UI is definitely looking greener! 🌱 #Design #Sustainability
+                        </p>
+</div>
+<div class="px-4 pb-4">
+<div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden">
+<div class="absolute inset-0 bg-center bg-no-repeat bg-cover" data-alt="Minimalist workspace setup with plants and design sketches" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA8cA-QjyJkSCEYm44poQYrxaUbL5-cJIeyldjdS2tk4idD9IlANZ-Hh1ijiIB89Q6W6HPzjhS3h3fdxDITfd05gO9mh2DLaYF9Mte8lkkl5QhIrU7u_gpIO9Cc4RNebXFAVze2IksuZN_DrY8LT_XiySdSvmYBFIkgODwTophAet0_6OHRXD5tbfr4LrpBweL5BY2fX4mFoyxC6jbEIl5S8aOI7q85AZZZqH7FFdEa_pJ2SFp7WwzsCDl3ruLCWDphGNjaxyofmfuh");'></div>
+</div>
+</div>
+<!-- Reaction Bar -->
+<div class="px-4 pb-4">
+<div class="flex items-center gap-6 pt-2 border-t border-gray-100 dark:border-gray-800/50">
+<button class="flex items-center gap-1.5 text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="text-xs font-semibold">128</span>
+</button>
+<button class="flex items-center gap-1.5 text-text-secondary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">chat_bubble</span>
+<span class="text-xs font-semibold">32</span>
+</button>
+<button class="flex items-center gap-1.5 text-text-secondary hover:text-white transition-colors ml-auto">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button -->
+<div class="fixed bottom-24 right-4 z-40">
+<button class="flex items-center justify-center w-14 h-14 bg-primary text-background-dark rounded-full shadow-[0_4px_14px_rgba(43,238,121,0.4)] hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[28px]">add</span>
+</button>
+</div>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 w-full max-w-md z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-lg border-t border-gray-200 dark:border-white/5 pb-6 pt-3 px-6">
+<ul class="flex justify-between items-center">
+<li>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+</li>
+<li>
+<a class="flex flex-col items-center gap-1 text-text-secondary hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="text-[10px] font-medium">Explore</span>
+</a>
+</li>
+<li>
+<a class="flex flex-col items-center gap-1 text-text-secondary hover:text-white transition-colors relative" href="#">
+<div class="relative">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-primary rounded-full border-2 border-background-dark"></span>
+</div>
+<span class="text-[10px] font-medium">Chat</span>
+</a>
+</li>
+<li>
+<a class="flex flex-col items-center gap-1 text-text-secondary hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</body></html>
